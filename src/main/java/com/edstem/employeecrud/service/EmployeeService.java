@@ -44,6 +44,16 @@ public class EmployeeService {
         }
         employeeRepository.deleteById(id);
     }
+    public EmployeeResponse updateBookById(int id, Employee employee) {
+        Employee existingEmployee = employeeRepository.findById(id).orElseThrow(() -> {
+            log.error("Book with id: {} not found", id);
+            return new EmployeeNotFoundException(id);
+        });
+        modelMapper.map(employee, existingEmployee);
+        Employee updatedEmployee = employeeRepository.save(existingEmployee);
+        return modelMapper.map(updatedEmployee, EmployeeResponse.class);
+
+    }
 
     public EmployeeResponse addEmployee(Employee employee){
 

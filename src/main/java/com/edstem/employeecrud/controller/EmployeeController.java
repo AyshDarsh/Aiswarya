@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping
+@RequestMapping("/employee")
 
 public class EmployeeController {
     private final EmployeeService employeeService;
@@ -21,25 +21,30 @@ public class EmployeeController {
     }
 
     //get all employees
-    @GetMapping("/getAllEmployees")
+    @GetMapping
     public ResponseEntity<List<EmployeeResponse>> getAllEmployees() {
         return new ResponseEntity<>(employeeService.getAllEmployees(), HttpStatus.OK);
     }
 
     //get one employee
-    @GetMapping("/getEmployeeById/{id}")
+    @GetMapping("{id}")
     public ResponseEntity<EmployeeResponse> getEmployeeById(@PathVariable int id) {
         return new ResponseEntity<>(employeeService.getEmployeeById(id), HttpStatus.OK);
     }
     //delete a user
-    @DeleteMapping("/deleteEmployeeById/{id}")
+    @DeleteMapping("{id}")
     public ResponseEntity<String> deleteEmployeeById(@PathVariable int id) {
         employeeService.deleteEmployeeById(id);
         return ResponseEntity.ok("Employee with ID " + id + " has been deleted.");
 
     }
+    @PutMapping("/{id}")
+    public ResponseEntity<EmployeeResponse> updateEmployeeById(@PathVariable int id, @RequestBody Employee employee) {
+        EmployeeResponse updatedEmployee = employeeService.updateBookById(id, employee);
+        return new ResponseEntity<>(updatedEmployee, HttpStatus.OK);
+    }
     //create employee
-    @PostMapping("/addEmployee")
+    @PostMapping
     public ResponseEntity<EmployeeResponse> addEmployee(@RequestBody Employee employee){
     EmployeeResponse employeeResponse=employeeService.addEmployee(employee);
 
