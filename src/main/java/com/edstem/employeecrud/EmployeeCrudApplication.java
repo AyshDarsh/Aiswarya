@@ -1,4 +1,4 @@
-package com.in28minutes.employeecrud;
+package com.edstem.employeecrud;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
