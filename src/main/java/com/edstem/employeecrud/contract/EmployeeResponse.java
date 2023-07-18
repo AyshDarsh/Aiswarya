@@ -2,6 +2,8 @@ package com.edstem.employeecrud.contract;
 import lombok.*;
     @Builder
     @Getter
+    @Setter
+    @NoArgsConstructor
     @AllArgsConstructor
     public  class EmployeeResponse {
         private int id;

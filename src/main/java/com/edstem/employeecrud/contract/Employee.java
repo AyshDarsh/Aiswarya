@@ -1,4 +1,4 @@
-package com.edstem.employeecrud.employee;
+package com.edstem.employeecrud.contract;
 
 import jakarta.persistence.*;
 import lombok.*;

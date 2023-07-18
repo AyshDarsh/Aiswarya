@@ -1,6 +1,6 @@
 package com.edstem.employeecrud.repository;
 
-import com.edstem.employeecrud.employee.Employee;
+import com.edstem.employeecrud.contract.Employee;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import java.util.Optional;
