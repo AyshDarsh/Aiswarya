@@ -1,4 +1,4 @@
-package com.edstem.employeecrud;
+package com.edstem.employee;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

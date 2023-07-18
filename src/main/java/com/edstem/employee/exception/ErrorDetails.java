@@ -1,4 +1,4 @@
-package com.edstem.employeecrud.exception;
+package com.edstem.employee.exception;
 
 import java.time.LocalDateTime;
 

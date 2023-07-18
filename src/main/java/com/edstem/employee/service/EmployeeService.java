@@ -1,15 +1,14 @@
-package com.edstem.employeecrud.service;
+package com.edstem.employee.service;
 
-import com.edstem.employeecrud.contract.EmployeeResponse;
-import com.edstem.employeecrud.contract.Employee;
-import com.edstem.employeecrud.exception.EmployeeNotFoundException;
-import com.edstem.employeecrud.repository.EmployeeRepository;
+import com.edstem.employee.contract.EmployeeResponse;
+import com.edstem.employee.model.Employee;
+import com.edstem.employee.exception.EmployeeNotFoundException;
+import com.edstem.employee.repository.EmployeeRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -18,16 +17,17 @@ import java.util.stream.Collectors;
 public class EmployeeService {
     private final EmployeeRepository employeeRepository;
     private final ModelMapper modelMapper;
-@Autowired
+
+    @Autowired
     public EmployeeService(EmployeeRepository employeeRepository, ModelMapper modelMapper) {
         this.employeeRepository = employeeRepository;
         this.modelMapper = modelMapper;
-}
+    }
 
     public List<EmployeeResponse> getAllEmployees() {
         List<Employee> employees = this.employeeRepository.findAll();
         return employees.stream().map(employee -> modelMapper
-                .map(employee,EmployeeResponse.class)).collect(Collectors.toList());
+                .map(employee, EmployeeResponse.class)).collect(Collectors.toList());
     }
 
     public EmployeeResponse getEmployeeById(int id) {
@@ -35,7 +35,7 @@ public class EmployeeService {
             log.error("Employee with id:{} not found", id);
             return new EmployeeNotFoundException(id);
         });
-        return modelMapper.map(employee,EmployeeResponse.class);
+        return modelMapper.map(employee, EmployeeResponse.class);
     }
 
     public void deleteEmployeeById(int id) {
@@ -44,6 +44,7 @@ public class EmployeeService {
         }
         employeeRepository.deleteById(id);
     }
+
     public EmployeeResponse updateBookById(int id, Employee employee) {
         Employee existingEmployee = employeeRepository.findById(id).orElseThrow(() -> {
             log.error("Book with id: {} not found", id);
@@ -55,10 +56,10 @@ public class EmployeeService {
 
     }
 
-    public EmployeeResponse addEmployee(Employee employee){
+    public EmployeeResponse addEmployee(Employee employee) {
 
         Employee savedEmployee = employeeRepository.save(employee);
-        return modelMapper.map(savedEmployee,EmployeeResponse.class);
+        return modelMapper.map(savedEmployee, EmployeeResponse.class);
 
     }
 

@@ -1,4 +1,4 @@
-package com.edstem.employeecrud;
+package com.edstem.employee;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.boot.SpringApplication;
