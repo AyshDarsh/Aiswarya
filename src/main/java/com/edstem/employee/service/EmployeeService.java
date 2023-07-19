@@ -1,6 +1,6 @@
 package com.edstem.employee.service;
 
-import com.edstem.employee.contract.EmployeeResponse;
+import com.edstem.employee.contract.EmployeeDto;
 import com.edstem.employee.model.Employee;
 import com.edstem.employee.exception.EmployeeNotFoundException;
 import com.edstem.employee.repository.EmployeeRepository;
@@ -24,18 +24,18 @@ public class EmployeeService {
         this.modelMapper = modelMapper;
     }
 
-    public List<EmployeeResponse> getAllEmployees() {
+    public List<EmployeeDto> getAllEmployees() {
         List<Employee> employees = this.employeeRepository.findAll();
         return employees.stream().map(employee -> modelMapper
-                .map(employee, EmployeeResponse.class)).collect(Collectors.toList());
+                .map(employee, EmployeeDto.class)).collect(Collectors.toList());
     }
 
-    public EmployeeResponse getEmployeeById(int id) {
+    public EmployeeDto getEmployeeById(int id) {
         Employee employee = this.employeeRepository.findById(id).orElseThrow(() -> {
             log.error("Employee with id:{} not found", id);
             return new EmployeeNotFoundException(id);
         });
-        return modelMapper.map(employee, EmployeeResponse.class);
+        return modelMapper.map(employee, EmployeeDto.class);
     }
 
     public void deleteEmployeeById(int id) {
@@ -45,21 +45,21 @@ public class EmployeeService {
         employeeRepository.deleteById(id);
     }
 
-    public EmployeeResponse updateBookById(int id, Employee employee) {
+    public EmployeeDto updateBookById(int id, EmployeeDto employee) {
         Employee existingEmployee = employeeRepository.findById(id).orElseThrow(() -> {
             log.error("Book with id: {} not found", id);
             return new EmployeeNotFoundException(id);
         });
         modelMapper.map(employee, existingEmployee);
         Employee updatedEmployee = employeeRepository.save(existingEmployee);
-        return modelMapper.map(updatedEmployee, EmployeeResponse.class);
+        return modelMapper.map(updatedEmployee, EmployeeDto.class);
 
     }
 
-    public EmployeeResponse addEmployee(Employee employee) {
-
-        Employee savedEmployee = employeeRepository.save(employee);
-        return modelMapper.map(savedEmployee, EmployeeResponse.class);
+    public EmployeeDto addEmployee(EmployeeDto employee) {
+        Employee  employeeEntity=modelMapper.map(employee, Employee.class);
+        Employee savedEmployee = employeeRepository.save(employeeEntity);
+        return modelMapper.map(savedEmployee, EmployeeDto.class);
 
     }
 
