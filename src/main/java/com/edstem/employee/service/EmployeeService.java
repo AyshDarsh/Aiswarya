@@ -45,7 +45,7 @@ public class EmployeeService {
         employeeRepository.deleteById(id);
     }
 
-    public EmployeeDto updateBookById(int id, EmployeeDto employee) {
+    public EmployeeDto updateEmployeeById(int id, EmployeeDto employee) {
         Employee existingEmployee = employeeRepository.findById(id).orElseThrow(() -> {
             log.error("Book with id: {} not found", id);
             return new EmployeeNotFoundException(id);
@@ -62,6 +62,7 @@ public class EmployeeService {
         return modelMapper.map(savedEmployee, EmployeeDto.class);
 
     }
+
 
 }
 

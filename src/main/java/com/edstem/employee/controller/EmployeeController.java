@@ -2,7 +2,7 @@ package com.edstem.employee.controller;
 
 
 import com.edstem.employee.contract.EmployeeDto;
-import com.edstem.employee.model.Employee;
+
 import com.edstem.employee.service.EmployeeService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,15 +43,15 @@ public class EmployeeController {
     }
 
     @PutMapping("/{id}")
-    // Should use a contract class here
+
     public ResponseEntity<EmployeeDto> updateEmployeeById(@PathVariable int id, @Valid @RequestBody EmployeeDto employee) {
-        EmployeeDto updatedEmployee = employeeService.updateBookById(id, employee);
+        EmployeeDto updatedEmployee = employeeService.updateEmployeeById(id, employee);
         return new ResponseEntity<>(updatedEmployee, HttpStatus.OK);
     }
 
 
     @PostMapping
-    // Should use a contract class here
+
     public ResponseEntity<EmployeeDto> addEmployee(@Valid @RequestBody EmployeeDto employee) {
         EmployeeDto employeeDto = employeeService.addEmployee(employee);
         return new ResponseEntity<>(employee, HttpStatus.CREATED);
