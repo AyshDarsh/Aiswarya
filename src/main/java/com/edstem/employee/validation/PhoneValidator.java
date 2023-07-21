@@ -4,7 +4,6 @@ import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 import org.springframework.util.StringUtils;
 
-
 public class PhoneValidator implements ConstraintValidator<ValidPhone, String> {
 
     @Override
@@ -12,4 +11,3 @@ public class PhoneValidator implements ConstraintValidator<ValidPhone, String> {
         return StringUtils.hasText(phone) && phone.length() == 10;
     }
 }
-

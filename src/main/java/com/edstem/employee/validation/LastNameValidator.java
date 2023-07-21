@@ -11,4 +11,3 @@ public class LastNameValidator implements ConstraintValidator<ValidLastName, Str
         return StringUtils.hasText(lastname) && lastname.length() >= 1;
     }
 }
-

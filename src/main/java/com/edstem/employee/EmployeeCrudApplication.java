@@ -9,16 +9,17 @@ import org.springframework.context.annotation.Bean;
 @SpringBootApplication
 public class EmployeeCrudApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(EmployeeCrudApplication.class, args);}
+    public static void main(String[] args) {
+        SpringApplication.run(EmployeeCrudApplication.class, args);
+    }
 
-		@Bean
-		public ModelMapper modelMapper() {
-			ModelMapper mapper=new ModelMapper();
-		mapper.getConfiguration().setFieldMatchingEnabled(true).setFieldAccessLevel
-				(Configuration.AccessLevel.PRIVATE);
+    @Bean
+    public ModelMapper modelMapper() {
+        ModelMapper mapper = new ModelMapper();
+        mapper.getConfiguration()
+                .setFieldMatchingEnabled(true)
+                .setFieldAccessLevel(Configuration.AccessLevel.PRIVATE);
 
-		return mapper;
-	}
-
+        return mapper;
+    }
 }

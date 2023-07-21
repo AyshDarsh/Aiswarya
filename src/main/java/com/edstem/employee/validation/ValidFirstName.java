@@ -2,7 +2,6 @@ package com.edstem.employee.validation;
 
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
-
 import java.lang.annotation.*;
 
 @Target({ElementType.FIELD})
@@ -15,5 +14,4 @@ public @interface ValidFirstName {
     Class<?>[] groups() default {};
 
     Class<? extends Payload>[] payload() default {};
-
 }
